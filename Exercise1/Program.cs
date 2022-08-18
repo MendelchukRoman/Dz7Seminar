@@ -1,27 +1,41 @@
-﻿// Задайте двумерный массив размером m×n, заполненный случайными вещественными числам m=3 n=4;
- // 1) Задать массив
- // 2) Заполнить случайными числами
+﻿// Задайте двумерный массив размером m×n, заполненный случайными вещественными числам; (с поворотом матрицы)
+ 
 
 class Program
-{
-static void Main (string[] args)
-{
-int [,] massiv = new int [4, 3];
-Random random = new Random();
-    for (int i = 0; i < massiv.GetLength(0); i++)
-       {
-    for (int j = 0; j < massiv.GetLength(1); j++)
-         {
-           massiv [i, j] = random.Next(1, 99);
-         }
-       }
-    for (int x = 0; x < massiv.GetLength(0); x++)
-       {
-            for (int y = 0; y < massiv.GetLength(1); y++)
-              {
-                Console.Write(massiv[x , y] + "\t");
-              }
-             Console.WriteLine(); 
-       }
-}
-}
+    {
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            Console.Write("Введите размер матрицы по вертикали: ");
+            int x = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите размер матрицы по горизонтали: ");
+            int y = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("");
+            int[,] mas = new int[x, y];
+            for (int i = 0; i < (mas.GetUpperBound(0) + 1); i++)
+            {
+                for (int j = 0; j < (mas.Length) / (mas.GetUpperBound(0) + 1); j++)
+                {
+                    mas[i, j] = random.Next(0, 9);
+                }
+            }
+            for (int i = 0; i < (mas.GetUpperBound(0) + 1); i++)
+            {
+                for(int j=0;j< (mas.Length) / (mas.GetUpperBound(0) + 1); j++)
+                {
+                   Console.Write($"{mas[i, j]} ");
+                }
+               Console.WriteLine("");
+            }
+           Console.WriteLine("");
+            for (int i = (mas.GetUpperBound(0) + 1); i > 0; i--)
+            {
+                for (int j = 0; j < (mas.Length) / (mas.GetUpperBound(0) + 1); j++)
+                {
+ 
+                    Console.Write($"{mas[j, i-1]} ");
+                }
+                Console.WriteLine("");
+            }
+        }
+     }
